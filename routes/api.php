@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ExpenseCategoryController;
 use App\Http\Controllers\ExpenseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -21,4 +22,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::apiResources([
     'expenses' => ExpenseController::class,
+    'expense-categories' => ExpenseCategoryController::class,
 ]);

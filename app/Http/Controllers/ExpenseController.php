@@ -15,7 +15,7 @@ class ExpenseController extends Controller
     public function index()
     {
         //
-        return ExpenseResource::collection(Expense::latest()->paginate());
+        return ExpenseResource::collection(Expense::latest()->with(['expense_category'])->paginate());
     }
 
     /**
@@ -37,7 +37,7 @@ class ExpenseController extends Controller
     public function show(Expense $expense)
     {
         //
-        return new ExpenseResource($expense);
+        return new ExpenseResource($expense::with(['expense_category'])->get()[0]);
     }
 
     /**
@@ -50,7 +50,7 @@ class ExpenseController extends Controller
 
         $expense->update($validatedExpense);
 
-        return new ExpenseResource($expense);
+        return new ExpenseResource($expense::with(['expense_category'])->get()[0]);
     }
 
     /**
